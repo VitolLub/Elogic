@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Elogic_TestUnit::first_level_demo"
+             title="Elogic Menu"
+             module="Elogic_TestUnit"
+             sortOrder="12"
+             resource="Magento_Backend::content" />
+        <add id="Elogic_TestUnit::second_level_demo"
+             title="Vendor List"
+             module="Elogic_TestUnit"
+             sortOrder="0"
+             action="elogic_testunit/post/index"
+             parent="Elogic_TestUnit::first_level_demo"
+             resource="Magento_Backend::content" />
+        <add id="Elogic_TestUnit::second2_level_demo"
+             title="Add Vendor"
+             module="Elogic_TestUnit"
+             sortOrder="1"
+             action="elogic_testunit/post/add"
+             parent="Elogic_TestUnit::first_level_demo"
+             resource="Magento_Backend::content" />
+    </menu>
+</config>

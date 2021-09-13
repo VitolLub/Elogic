@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="product.info.main"  template="Elogic_TestUnit::index.phtml">
+            <block name="index"
+                    class="Magento\Framework\View\Element\Template"
+                    template="Elogic_TestUnit::index.phtml"
+                   before="product.info.price">
+                <arguments>
+                    <argument name="viewModel" xsi:type="object">Elogic\TestUnit\ViewModel\ProductListing</argument>
+                </arguments>
+            </block>
+        </referenceBlock>
+    </body>
+</page>
+
