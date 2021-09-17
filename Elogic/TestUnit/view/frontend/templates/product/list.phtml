@@ -1,0 +1,17 @@
+<?php
+/**@var Elogic\TestUnit\ViewModel\ProductListing $viewModel*/
+$viewModel = $block->getData('viewModel');
+
+// print current product data
+$vendor_id = $block->getProduct()->getVendor();
+$res_data = $viewModel->getVendorDescription($vendor_id);
+?>
+<?php if(isset($res_data['name'])) {
+    ?>
+    <h3>Vendor Name: <?= $res_data['title']; ?></h3>
+    <span>Vendor Desrciprion: <?= $res_data['description']; ?></span>
+<?php
+}
+?>
+
+

@@ -1,0 +1,13 @@
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+        <table name="elogic_testunit_vendor">
+            <column xsi:type="int" name="vendor_id" unsigned="true" nullable="false" padding="10" identity="true"  comment="Entity Id"/>
+            <column xsi:type="varchar" name="description"   nullable="false" comment="Description"/>
+            <column xsi:type="varchar" name="title" nullable="false" length="255" comment="Title"/>
+            <column xsi:type="text" name="thumbnail"  comment="Thumbnail"/>
+            <column xsi:type="timestamp" name="time_occurred" comment="Time of event"/>
+            <constraint xsi:type="primary" referenceId="PRIMARY">
+                <column name="vendor_id"/>
+            </constraint>
+        </table>
+</schema>

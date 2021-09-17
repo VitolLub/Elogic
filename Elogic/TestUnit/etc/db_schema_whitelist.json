@@ -1,0 +1,14 @@
+{
+    "elogic_testunit_vendor": {
+        "column": {
+            "vendor_id": true,
+            "description": true,
+            "title": true,
+            "thumbnail": true,
+            "time_occurred": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}
