@@ -10,9 +10,6 @@ use \Magento\Framework\Api\SearchCriteriaBuilder;
 class Thumbnail extends Column
 {
 
-    protected $_orderRepository;
-    protected $_searchCriteria;
-    protected $_customfactory;
     protected $collectionFactory;
     protected $postFactory;
     public function __construct(
@@ -38,7 +35,7 @@ class Thumbnail extends Column
     public function prepareDataSource(array $dataSource)
     {
 
-        foreach ($dataSource['data']['items'] as & $item){ 
+        foreach ($dataSource['data']['items'] as & $item){
             if(isset($item['vendor'])){
                 $fieldName = $this->getData('name');
                 $vendor_id = trim($item['vendor']);

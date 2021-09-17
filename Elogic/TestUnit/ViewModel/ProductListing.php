@@ -4,19 +4,30 @@ namespace Elogic\TestUnit\ViewModel;
 use Magento\Framework\View\Element\Block\ArgumentInterface;
 class ProductListing implements ArgumentInterface
 {
-    protected $_product;
 
     public function __construct(
-        \Elogic\TestUnit\Model\VendorFactory $vendorFactory
+        \Magento\Catalog\Model\Layer\Resolver $layerResolver
     )
-    {
-        $this->_vendorFactory = $vendorFactory;
+    { 
+        $this->layerResolver = $layerResolver;
+        $this->layerResolver->get();
     }
-    public function getVendorDescription($vendorId)
+    public function getVendor(int $vendorId):
     {
-        //load venor description and name by post_id
-        $vendor_collection = $this->_vendorFactory->create()->load($vendorId, 'vendor_id')->getData();
-        return $vendor_collection;
+        return $this->getVendorsCollection()->getById($vendorId);
+    }
+
+    private function getVendorsCollection()
+    {
+        if (!$this->vendorsCollection) {
+            $vendorIds = [0];
+            foreach ($this->layerResolver->getProductCollection() as $product) {
+                $vendorIds[] = (int)$product->getVendorId();
+            }
+            $this->vendorsCollection = $this->vendorCollectionFactory()->create()
+                ->addFieldToFilter('vendor_id IN (?)', $vendorIds);
+        }
+        return $this->vendorsCollection;
     }
 
 }
