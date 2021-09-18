@@ -8,7 +8,7 @@ class ProductListing implements ArgumentInterface
     public function __construct(
         \Magento\Catalog\Model\Layer\Resolver $layerResolver
     )
-    { 
+    {
         $this->layerResolver = $layerResolver;
         $this->layerResolver->get();
     }
