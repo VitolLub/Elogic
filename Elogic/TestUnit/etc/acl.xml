@@ -3,16 +3,9 @@
     <acl>
         <resources>
             <resource id="Magento_Backend::admin">
-                <resource id="Elogic_TestUnit::first_level_demo" title="Elogic Menu" sortOrder="51">
-                    <resource id="Elogic_TestUnit::second_level_demo" title="Posts" sortOrder="10"/>
-                    <resource id="Elogic_TestUnit::second2_level_demo" title="Configuration" sortOrder="99" />
-                </resource>
-                <resource id="Magento_Backend::stores">
-                    <resource id="Magento_Backend::stores_settings">
-                        <resource id="Magento_Config::config">
-                            <resource id="Elogic_TestUnit::first_level_demo" title="Elogic Menu"/>
-                        </resource>
-                    </resource>
+                <resource id="Elogic_TestUnit::menu" title="Elogic Menu" sortOrder="12" >
+                    <resource id="Elogic_TestUnit::vendor_index" title="Vendor List" sortOrder="0" />
+                    <resource id="Elogic_TestUnit::vendor_add" title="Add Vendor" sortOrder="1" />
                 </resource>
             </resource>
         </resources>

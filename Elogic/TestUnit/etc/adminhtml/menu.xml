@@ -7,19 +7,19 @@
              module="Elogic_TestUnit"
              sortOrder="12"
              resource="Elogic_TestUnit::first_level_demo" />
-        <add id="Elogic_TestUnit::second_level_demo"
+        <add id="Elogic_TestUnit::vendor_index"
              title="Vendor List"
              module="Elogic_TestUnit"
              sortOrder="0"
              action="elogic_testunit/vendor/index"
-             parent="Elogic_TestUnit::second_level_demo"
-             resource="Magento_Backend::content" />
-        <add id="Elogic_TestUnit::second2_level_demo"
+             parent="Elogic_TestUnit::first_level_demo"
+             resource="Magento_Backend::vendor_index" />
+        <add id="Elogic_TestUnit::vendor_add"
              title="Add Vendor"
              module="Elogic_TestUnit"
              sortOrder="1"
              action="elogic_testunit/vendor/add"
              parent="Elogic_TestUnit::first_level_demo"
-             resource="Elogic_TestUnit::second2_level_demo" />
+             resource="Elogic_TestUnit::vendor_add" />
     </menu>
 </config>

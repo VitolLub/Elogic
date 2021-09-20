@@ -4,15 +4,14 @@ namespace Elogic\TestUnit\ViewModel;
 use Magento\Framework\View\Element\Block\ArgumentInterface;
 class ProductListing implements ArgumentInterface
 {
-
+    private $layerResolver;
     public function __construct(
         \Magento\Catalog\Model\Layer\Resolver $layerResolver
     )
     {
         $this->layerResolver = $layerResolver;
-        $this->layerResolver->get();
     }
-    public function getVendor(int $vendorId):
+    public function getVendor(int $vendorId)
     {
         return $this->getVendorsCollection()->getById($vendorId);
     }
@@ -21,7 +20,8 @@ class ProductListing implements ArgumentInterface
     {
         if (!$this->vendorsCollection) {
             $vendorIds = [0];
-            foreach ($this->layerResolver->getProductCollection() as $product) {
+            $this->layer = $layerResolver->get();
+            foreach ($this->layer->getProductCollection() as $product) {
                 $vendorIds[] = (int)$product->getVendorId();
             }
             $this->vendorsCollection = $this->vendorCollectionFactory()->create()
