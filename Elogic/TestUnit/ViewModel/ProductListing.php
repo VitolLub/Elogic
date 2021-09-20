@@ -19,13 +19,17 @@ class ProductListing implements ArgumentInterface
     private function getVendorsCollection()
     {
         if (!$this->vendorsCollection) {
-            $vendorIds = [0];
-            $this->layer = $layerResolver->get();
-            foreach ($this->layer->getProductCollection() as $product) {
-                $vendorIds[] = (int)$product->getVendorId();
+            try {
+                $vendorIds = [0];
+                $this->layer = $layerResolver->get();
+                foreach ($this->layer->getProductCollection() as $product) {
+                    $vendorIds[] = (int)$product->getVendorId();
+                }
+                $this->vendorsCollection = $this->vendorCollectionFactory()->create()
+                    ->addFieldToFilter('vendor_id IN (?)', $vendorIds);
+            } catch (\Exception $e) {
+                $this->messageManager->addErrorMessage($e, __("can't find vendorsCollection"));
             }
-            $this->vendorsCollection = $this->vendorCollectionFactory()->create()
-                ->addFieldToFilter('vendor_id IN (?)', $vendorIds);
         }
         return $this->vendorsCollection;
     }
