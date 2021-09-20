@@ -47,7 +47,7 @@ class AddAttribute implements DataPatchInterface
             'type' => 'int',
             'label' => 'Vendor',
             'input' => 'select',
-            'backend' => 'Elogic\TestUnit\Model\Attribute\Backend\Vendor',
+            'source' => 'Elogic\TestUnit\Model\Attribute\Source\Vendor',
             'required' => false,
             'sort_order' => 5,
             'global' => \Magento\Eav\Model\Entity\Attribute\ScopedAttributeInterface::SCOPE_GLOBAL,
