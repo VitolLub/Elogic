@@ -3,35 +3,40 @@
 namespace Elogic\TestUnit\Model\Attribute\Source;
 
 use \Magento\Eav\Model\Entity\Attribute\Source\AbstractSource;
-use \Magento\Framework\Option\ArrayInterface;
+use \Elogic\TestUnit\Model\Vendor as VendorModel;
+use \Elogic\TestUnit\Model\ResourceModel\Vendor\Collection;
+use \Elogic\TestUnit\Model\ResourceModel\Vendor\CollectionFactory;
 
-class Vendor extends \Magento\Eav\Model\Entity\Attribute\Source\AbstractSource
+class Vendor extends AbstractSource
 {
+    /**
+     * VendorsCollectionClass
+     */
+    private Collection $vendorsCollection;
 
-    protected $vendorFactory;
+    /**
+     * @param CollectionFactory $vendorCollectionFactory
+     */
     public function __construct(
-        \Elogic\TestUnit\Model\VendorFactory $vendorFactory
+        CollectionFactory $vendorCollectionFactory
     ) {
-        $this->vendorFactory = $vendorFactory;
+        $this->vendorsCollection = $vendorCollectionFactory->create();
     }
 
     /**
      * Get all options
+     *
      * @return array
      */
-    public function getAllOptions()
+    public function getAllOptions(): array
     {
-
-        $collection = $this->vendorFactory->create()->getCollection();
-        $options = [];
-        foreach ($collection as $value) {
-            $options[] = ['label' => __($value->getTitle()), 'value'=>$value->getId()];
-        }
         if (!$this->_options) {
-            $this->_options = $options;
+            $this->_options = [];
+            foreach ($this->vendorsCollection as $vendorModel) {
+                /* @var $vendorModel VendorModel */
+                $this->_options[] = ['label' => __($vendorModel->getTitle()), 'value' => $vendorModel->getId()];
+            }
         }
         return $this->_options;
     }
-
-
 }

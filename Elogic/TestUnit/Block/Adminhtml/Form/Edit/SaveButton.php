@@ -1,7 +1,6 @@
 <?php
 namespace Elogic\TestUnit\Block\Adminhtml\Form\Edit;
-use Magento\Widget\Block\BlockInterface;
-use Magento\Cms\Block\Adminhtml\Page\Edit\GenericButton;
+
 use Magento\Framework\View\Element\UiComponent\Control\ButtonProviderInterface;
 
 class SaveButton implements ButtonProviderInterface

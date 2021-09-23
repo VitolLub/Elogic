@@ -1,10 +1,28 @@
 <?php
 namespace Elogic\TestUnit\Controller\Adminhtml\Vendor;
 
-class Add extends \Magento\Framework\App\Action\Action
+use \Magento\Framework\View\Result\PageFactory;
+use \Magento\Framework\View\Result\Page;
+use \Magento\Framework\App\Action\HttpPostActionInterface;
+use \Magento\Framework\App\Action\Action;
+
+class Add extends Action implements HttpPostActionInterface
 {
-    /** @var \Magento\Framework\View\Result\PageFactory  */
-    protected $resultPageFactory;
+    /**
+     * @var PageFactory
+     */
+    private PageFactory $resultPageFactory;
+
+    /**
+     * @var \Elogic\TestUnit\Model\VendorFactory
+     */
+    private \Elogic\TestUnit\Model\VendorFactory $vendorFactory;
+
+    /**
+     * @param \Magento\Framework\App\Action\Context $context
+     * @param \Magento\Framework\View\Result\PageFactory $resultPageFactory
+     * @param \Elogic\TestUnit\Model\VendorFactory $vendorFactory
+     */
     public function __construct(
         \Magento\Framework\App\Action\Context $context,
         \Magento\Framework\View\Result\PageFactory $resultPageFactory,
@@ -15,7 +33,7 @@ class Add extends \Magento\Framework\App\Action\Action
         parent::__construct($context);
     }
     /**
-     * Load the page defined in view/adminhtml/layout/samplenewpage_sampleform_index.xml
+     * Load the page defined in view/adminhtml/layout/elogic_testunit_vendor_add.xml
      *
      * @return \Magento\Framework\View\Result\Page
      */
@@ -43,4 +61,13 @@ class Add extends \Magento\Framework\App\Action\Action
         return $resultRedirect;
     }
 
+    /**
+     * Determines whether current user is allowed to access Action
+     *
+     * @return bool
+     */
+    protected function _isAllowed()
+    {
+        return $this->_authorization->isAllowed('Elogic_TestUnit::vendor_add');
+    }
 }

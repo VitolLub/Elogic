@@ -13,7 +13,8 @@
         </arguments>
     </virtualType>
 
-    <virtualType name="Elogic\TestUnit\ReferenceImageUpload" type="Elogic\TestUnit\Model\ImageUploader">
+    <!-- @TODO Check and remove own ImageUploader if works -->
+    <virtualType name="Elogic\TestUnit\ReferenceImageUpload" type="Magento\Catalog\Model\ImageUploader">
         <arguments>
             <argument name="baseTmpPath" xsi:type="string">elogic/tmp/feature</argument>
             <argument name="basePath" xsi:type="string">elogic/feature</argument>
@@ -37,4 +38,5 @@
             <argument name="imageUploader" xsi:type="object">Elogic\TestUnit\ReferenceImageUpload</argument>
         </arguments>
     </type>
+    
 </config>

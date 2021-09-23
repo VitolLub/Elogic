@@ -1,19 +1,16 @@
 <?php
-/**
- * Copyright © Magento, Inc. All rights reserved.
- * See COPYING.txt for license details.
- */
 declare(strict_types=1);
 
 namespace Elogic\TestUnit\Setup\Patch\Data;
+
 use Magento\Eav\Setup\EavSetup;
 use Magento\Eav\Setup\EavSetupFactory;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
 
 /**
-* Patch is mechanism, that allows to do atomic upgrade data changes
-*/
+ * Patch is mechanism, that allows to do atomic upgrade data changes
+ */
 class AddAttribute implements DataPatchInterface
 {
     /** @var ModuleDataSetupInterface */
@@ -47,7 +44,7 @@ class AddAttribute implements DataPatchInterface
             'type' => 'int',
             'label' => 'Vendor',
             'input' => 'select',
-            'source' => 'Elogic\TestUnit\Model\Attribute\Source\Vendor',
+            'source' => \Elogic\TestUnit\Model\Attribute\Source\Vendor::class,
             'required' => false,
             'sort_order' => 5,
             'global' => \Magento\Eav\Model\Entity\Attribute\ScopedAttributeInterface::SCOPE_GLOBAL,

@@ -1,37 +1,64 @@
 <?php
+declare(strict_types=1);
+
 namespace Elogic\TestUnit\ViewModel;
 
-use Magento\Framework\View\Element\Block\ArgumentInterface;
+use \Magento\Framework\View\Element\Block\ArgumentInterface;
+use \Elogic\TestUnit\Model\Vendor;
+use \Elogic\TestUnit\Model\ResourceModel\Vendor\Collection;
+use \Elogic\TestUnit\Model\ResourceModel\Vendor\CollectionFactory;
+use \Magento\Catalog\Model\Layer;
+use \Magento\Catalog\Model\Layer\Resolver;
+
 class ProductListing implements ArgumentInterface
 {
-    private $layerResolver;
+    /**
+     * @var Layer
+     */
+    private Layer $layer;
+
+    /**
+     * VendorsCollectionClass
+     */
+    private Collection $vendorsCollection;
+
+    /**
+     * @param Resolver $layerResolver
+     * @param CollectionFactory $vendorCollectionFactory
+     */
     public function __construct(
-        \Magento\Catalog\Model\Layer\Resolver $layerResolver
-    )
-    {
-        $this->layerResolver = $layerResolver;
-    }
-    public function getVendor(int $vendorId)
-    {
-        return $this->getVendorsCollection()->getById($vendorId);
+        Resolver $layerResolver,
+        CollectionFactory $vendorCollectionFactory
+    ) {
+        $this->layer = $layerResolver->get();
+        $this->vendorsCollection = $vendorCollectionFactory->create();
     }
 
-    private function getVendorsCollection()
+    /**
+     * Get vendor to be processed in template
+     *
+     * @param int $vendorId
+     * @return Vendor
+     */
+    public function getVendor(int $vendorId): Vendor
     {
-        if (!$this->vendorsCollection) {
-            try {
-                $vendorIds = [0];
-                $this->layer = $layerResolver->get();
-                foreach ($this->layer->getProductCollection() as $product) {
-                    $vendorIds[] = (int)$product->getVendorId();
-                }
-                $this->vendorsCollection = $this->vendorCollectionFactory()->create()
-                    ->addFieldToFilter('vendor_id IN (?)', $vendorIds);
-            } catch (\Exception $e) {
-                $this->messageManager->addErrorMessage($e, __("can't find vendorsCollection"));
+        return $this->getVendorsCollection()->getItemById($vendorId);
+    }
+
+    /**
+     * Get vendor collection
+     *
+     * @return Collection
+     */
+    private function getVendorsCollection(): Collection
+    {
+        if (!$this->vendorsCollection->isLoaded()) {
+            $vendorIds = [0];
+            foreach ($this->layer->getProductCollection() as $product) {
+                $vendorIds[] = (int)$product->getVendorId();
             }
+            $this->vendorsCollection->addFieldToFilter('vendor_id IN (?)', $vendorIds);
         }
         return $this->vendorsCollection;
     }
-
 }

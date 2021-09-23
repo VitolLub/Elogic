@@ -1,5 +1,5 @@
 <?php
-namespace Elogic\TestUnit\Controller\Adminhtml\Vendor;
+namespace Elogic\TestUnit\Ui\Component\Listing\Columns\Column;
 
 use \Magento\Framework\View\Element\UiComponent\ContextInterface;
 use \Magento\Framework\View\Element\UiComponentFactory;
@@ -21,7 +21,6 @@ class Thumbnail extends Column
         $this->vendorFactory = $vendorFactory;
         parent::__construct($context, $uiComponentFactory, $components, $data);
     }
-
     public function prepareDataSource(array $dataSource)
     {
 

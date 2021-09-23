@@ -14,7 +14,9 @@ class Collection extends \Magento\Framework\Model\ResourceModel\Db\Collection\Ab
      */
     protected function _construct()
     {
-        $this->_init('Elogic\TestUnit\Model\Vendor', 'Elogic\TestUnit\Model\ResourceModel\Vendor');
+        $this->_init(
+            \Elogic\TestUnit\Model\Vendor::class,
+            \Elogic\TestUnit\Model\ResourceModel\Vendor::class
+        );
     }
-
 }

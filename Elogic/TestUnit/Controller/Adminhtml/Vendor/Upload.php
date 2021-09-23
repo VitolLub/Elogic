@@ -2,7 +2,6 @@
 
 namespace Elogic\TestUnit\Controller\Adminhtml\Vendor;
 
-use Exception;
 use Elogic\TestUnit\Model\ImageUploader;
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
@@ -17,7 +16,7 @@ class Upload extends Action implements HttpPostActionInterface
      *
      * @var ImageUploader
      */
-    protected $imageUploader;
+    private ImageUploader $imageUploader;
 
     /**
      * Upload constructor.
@@ -43,9 +42,19 @@ class Upload extends Action implements HttpPostActionInterface
 
         try {
             $result = $this->imageUploader->saveFileToTmpDir($imageId);
-        } catch (Exception $e) {
+        } catch (\Throwable $e) {
             $result = ['error' => $e->getMessage(), 'errorcode' => $e->getCode()];
         }
         return $this->resultFactory->create(ResultFactory::TYPE_JSON)->setData($result);
+    }
+
+    /**
+     * Determines whether current user is allowed to access Action
+     *
+     * @return bool
+     */
+    protected function _isAllowed()
+    {
+        return $this->_authorization->isAllowed('Elogic_TestUnit::vendor_add');
     }
 }
