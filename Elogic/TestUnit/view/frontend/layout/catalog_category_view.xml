@@ -4,7 +4,7 @@
         <referenceBlock name="category.products.list">
             <block class="Magento\Framework\View\Element\Template" name="my_vendor_list" template="Elogic_TestUnit::product/list.phtml">
                 <arguments>
-                    <argument name="viewModel" xsi:type="object">Elogic\TestUnit\ViewModel\ProductListing</argument>
+                    <argument name="view_model" xsi:type="object">Elogic\TestUnit\ViewModel\ProductListing</argument>
                 </arguments>
             </block>
         </referenceBlock>

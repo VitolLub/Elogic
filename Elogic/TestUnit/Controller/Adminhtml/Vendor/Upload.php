@@ -2,7 +2,7 @@
 
 namespace Elogic\TestUnit\Controller\Adminhtml\Vendor;
 
-use Elogic\TestUnit\Model\ImageUploader;
+use Magento\Catalog\Model\ImageUploader;
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
 use Magento\Framework\App\Action\HttpPostActionInterface;

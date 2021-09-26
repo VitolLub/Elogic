@@ -2,10 +2,8 @@
 /** @var $viewModel \Elogic\TestUnit\ViewModel\ProductListing */
 /*  @var $block \Magento\Framework\View\Element\Template */
 $viewModel = $block->getViewModel();
-$id = (int)$block->getProduct()->getVendor();
-$vendorModel = $viewModel->getVendor($id);
+$vendorModel = $viewModel->getVendor((int)$block->getProduct()->getVendor());
 ?>
-<?= $vendorModel->getTitle(); ?>
-<?= $vendorModel->getDescription(); ?>
-
-
+<?php if ($vendorModel): ?>
+    <?= $vendorModel->getTitle(); ?>
+<?php endif; ?>

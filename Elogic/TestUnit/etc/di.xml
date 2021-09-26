@@ -38,5 +38,8 @@
             <argument name="imageUploader" xsi:type="object">Elogic\TestUnit\ReferenceImageUpload</argument>
         </arguments>
     </type>
-    
+    <!-- Render our block added on layout for all product types -->
+    <type name="Magento\Catalog\Block\Product\ListProduct">
+        <plugin name="render_vendor_block" type="Elogic\TestUnit\Plugin\RenderVendorOnListingPage" sortOrder="100"/>
+    </type>
 </config>

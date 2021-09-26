@@ -1,4 +1,3 @@
-
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
     <argument name="data" xsi:type="array">
@@ -14,7 +13,11 @@
     </argument>
     <settings>
         <buttons>
-            <button name="save" class="Elogic\TestUnit\Block\Adminhtml\Form\Edit\SaveButton"/>
+            <button name="save">
+                <class>primary</class>
+                <label translate="true">Save Entity</label>
+                <aclResource>Elogic_TestUnit::vendor_add</aclResource>
+            </button>
         </buttons>
         <namespace>magenest_form</namespace>
         <dataScope>data</dataScope>
@@ -29,7 +32,7 @@
             </item>
         </argument>
         <settings>
-            <submitUrl path="elogic_testunit/vendor/add"/>
+            <submitUrl path="elogic_testunit/vendor/addPost"/>
         </settings>
         <dataProvider class="Elogic\TestUnit\Model\DataProvider" name="elogic_testunit_vendor_add_data_source">
             <settings>
@@ -128,7 +131,5 @@
                 </imageUploader>
             </formElements>
         </field>
-
-
     </fieldset>
 </form>

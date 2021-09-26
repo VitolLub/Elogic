@@ -31,7 +31,9 @@ class Vendor extends AbstractSource
     public function getAllOptions(): array
     {
         if (!$this->_options) {
-            $this->_options = [];
+            $this->_options = [
+                ['label' => __('Please select a value'), 'value' => 0]
+            ];
             foreach ($this->vendorsCollection as $vendorModel) {
                 /* @var $vendorModel VendorModel */
                 $this->_options[] = ['label' => __($vendorModel->getTitle()), 'value' => $vendorModel->getId()];

@@ -38,9 +38,9 @@ class ProductListing implements ArgumentInterface
      * Get vendor to be processed in template
      *
      * @param int $vendorId
-     * @return Vendor
+     * @return Vendor|null
      */
-    public function getVendor(int $vendorId): Vendor
+    public function getVendor(int $vendorId): ?Vendor
     {
         return $this->getVendorsCollection()->getItemById($vendorId);
     }
@@ -55,9 +55,12 @@ class ProductListing implements ArgumentInterface
         if (!$this->vendorsCollection->isLoaded()) {
             $vendorIds = [0];
             foreach ($this->layer->getProductCollection() as $product) {
-                $vendorIds[] = (int)$product->getVendorId();
+                $vendorId = (int)$product->getVendor();
+                if ($vendorId) {
+                    $vendorIds[] = $vendorId;
+                }
             }
-            $this->vendorsCollection->addFieldToFilter('vendor_id IN (?)', $vendorIds);
+            $this->vendorsCollection->addFieldToFilter('vendor_id', ['in' => $vendorIds]);
         }
         return $this->vendorsCollection;
     }

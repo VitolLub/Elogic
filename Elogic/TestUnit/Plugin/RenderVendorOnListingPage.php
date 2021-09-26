@@ -19,11 +19,13 @@ class RenderVendorOnListingPage
      * @param Product $product
      * @return string|null
      */
-    public function afterGetProductDetailsHtml($subject, $result, $product)
+    public function afterGetProductDetailsHtml(AbstractProduct $subject, ?string $result, Product $product): ?string
     {
         $vendorBlock = $subject->getChildBlock('my_vendor_list');
-        $vendorBlock->setProduct($product);
-
-        return $result.$vendorBlock->toHtml();
+        if ($vendorBlock) {
+            $vendorBlock->setProduct($product);
+            return $result . $vendorBlock->toHtml();
+        }
+        return $result;
     }
 }
